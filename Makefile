@@ -43,6 +43,8 @@ install: all
 	mkdir -p ${DESTDIR}${MANPREFIX}/man1
 	sed "s/VERSION/${VERSION}/g" < dwm.1 > ${DESTDIR}${MANPREFIX}/man1/dwm.1
 	chmod 644 ${DESTDIR}${MANPREFIX}/man1/dwm.1
+	gcc -o barM barM.c -O2 -s lX11
+	mv barM /usr/local/bin/
 
 uninstall:
 	rm -f ${DESTDIR}${PREFIX}/bin/dwm\
