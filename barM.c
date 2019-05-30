@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014,2015 levi0x0 with enhancements by ProgrammerNerd
+ * Copyright (C) 2014,2015 levi0x0 with enhancements by ProgrammerNerd and GlitchedCode
  * 
  * barM (bar_monitor or BarMonitor) is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -33,28 +33,29 @@
  */
 
 #define VERSION "0.12"
-#define TIME_FORMAT "%H:%M) (%d-%m-%Y"
-#define MAXSTR  1024
+#define TIME_FORMAT "\x02\xF0\x9F\x97\x93%d-%m-%Y \xF0\x9F\x95\x92%H:%M"
+#define MAXSTR  2048 // i want to make sure everything fits
 
 static const char * date(void);
+static const char * getuname(void);
 static const char * ram(void);
 static void XSetRoot(const char *name);
 /*Append here your functions.*/
 static const char*(*const functab[])(void)={
-        ram,date,getbattery
+        ram,getbattery,date
 };
 
 int main(void){
         char status[MAXSTR];
         /* It is foolish to repeatedly update uname. */
-        int ret;
-        {struct utsname u;
+        int ret = 0;
+        // uncomment to print kernel version
+        /*{struct utsname u;
         if(uname(&u)){
                 perror("uname failed");
                 return 1;
         }
-	// uname
-        ret=snprintf(status,sizeof(status),"(%s %s) ",u.nodename,u.release);}
+        ret=snprintf(status,sizeof(status),"(%s %s) ",u.sysname,u.release);}*/
         char*off=status+ret;
         if(off>=(status+MAXSTR)){
                 XSetRoot(status);
@@ -64,7 +65,7 @@ int main(void){
                 int left=sizeof(status)-ret,i;
                 char*sta=off;
                 for(i = 0; i<sizeof(functab)/sizeof(functab[0]); ++i ) {
-                        int ret=snprintf(sta,left,"(%s) ",functab[i]());
+                        int ret=snprintf(sta,left,"%s",functab[i]());
                         sta+=ret;
                         left-=ret;
                         if(sta>=(status+MAXSTR))/*When snprintf has to resort to truncating a string it will return the length as if it were not truncated.*/
@@ -89,7 +90,7 @@ static const char * ram(void){
         static char ram[MAXSTR];
         struct sysinfo s;
         sysinfo(&s);
-        snprintf(ram,sizeof(ram),"%.1fM/%.1fM",((double)(s.totalram-s.freeram))/1048576.,((double)s.totalram)/1048576.);
+        snprintf(ram,sizeof(ram),"\x04RAM: %.1fM/%.1fM",((double)(s.totalram-s.freeram))/1048576.,((double)s.totalram)/1048576.);
         return ram;
 }
 

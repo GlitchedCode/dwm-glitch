@@ -28,6 +28,7 @@ getbattery(){
     long lnum1, lnum2 = 0;
     char *status = malloc(sizeof(char)*12);
     char s = '?';
+    char c = '\x01';
     FILE *fp = NULL;
     if ((fp = fopen(BATT_NOW, "r"))) {
         fscanf(fp, "%ld\n", &lnum1);
@@ -39,12 +40,21 @@ getbattery(){
         fscanf(fp, "%s\n", status);
         fclose(fp);
         if (strcmp(status,"Charging") == 0)
+        {
             s = '+';
+            c = '\x06';
+        }
         if (strcmp(status,"Discharging") == 0)
+        {
             s = '-';
+            c = '\x05';
+        }
         if (strcmp(status,"Full") == 0)
+        {
+            c = '\x06';
             s = '=';
-        return smprintf("%c%ld%%", s,(lnum1/(lnum2/100)));
+        }
+        return smprintf("%c\xF0\x9F\x94\x8B%c%ld%%", c, s,(lnum1/(lnum2/100)));
     }
     else return smprintf("");
 }
