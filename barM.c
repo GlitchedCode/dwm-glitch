@@ -33,7 +33,7 @@
  */
 
 #define VERSION "0.12"
-#define TIME_FORMAT "\x02\xF0\x9F\x97\x93%d-%m-%Y \xF0\x9F\x95\x92%H:%M"
+#define TIME_FORMAT "\x03\xF0\x9F\x97\x93%d-%m-%Y\x02\xF0\x9F\x95\x92%H:%M"
 #define MAXSTR  2048 // i want to make sure everything fits
 
 static const char * date(void);
