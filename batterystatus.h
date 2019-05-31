@@ -54,7 +54,7 @@ getbattery(){
             c = '\x06';
             s = '=';
         }
-        return smprintf("%c \xF0\x9F\x94\x8B%ld%% ", c, (lnum1/(lnum2/100)));
+        return smprintf("%c \xF0\x9F\x94\x8B%ld%%", c, (lnum1/(lnum2/100)));
     }
     else return smprintf("");
 }
