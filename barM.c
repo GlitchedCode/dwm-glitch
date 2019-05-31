@@ -33,7 +33,7 @@
  */
 
 #define VERSION "0.12"
-#define TIME_FORMAT "\x03\xF0\x9F\x97\x93%d-%m-%Y\x02\xF0\x9F\x95\x92%H:%M"
+#define TIME_FORMAT "\x03 \xF0\x9F\x97\x93%d-%m-%Y \x02 \xF0\x9F\x95\x92%H:%M:%S \x01"
 #define MAXSTR  2048 // i want to make sure everything fits
 
 static const char * date(void);
@@ -71,6 +71,7 @@ int main(void){
                         if(sta>=(status+MAXSTR))/*When snprintf has to resort to truncating a string it will return the length as if it were not truncated.*/
                                 break;
                 }
+                //printf("%s %s\n", status, "end");
                 XSetRoot(status);
                 sleep(1);
         }
@@ -90,7 +91,7 @@ static const char * ram(void){
         static char ram[MAXSTR];
         struct sysinfo s;
         sysinfo(&s);
-        snprintf(ram,sizeof(ram),"\x04RAM: %.1fM/%.1fM",((double)(s.totalram-s.freeram))/1048576.,((double)s.totalram)/1048576.);
+        snprintf(ram,sizeof(ram),"\x04 RAM: %.1fM/%.1fM ",((double)(s.totalram-s.freeram))/1048576.,((double)s.totalram)/1048576.);
         return ram;
 }
 
