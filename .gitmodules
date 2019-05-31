@@ -1,0 +1,3 @@
+[submodule "dmenu-glitch"]
+	path = dmenu-glitch
+	url = git@github.com:GlitchedCode/dmenu-glitch.git
