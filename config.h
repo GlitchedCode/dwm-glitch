@@ -3,8 +3,8 @@
 /* appearance */
 static const unsigned int borderpx  = 3;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
-static const int glitch_numerator 	= 4;
-static const int glitch_denominator = 7;
+static const int glitch_numerator   = 8;
+static const int glitch_denominator = 11;
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 0;        /* 0 means bottom bar */
 static const char *fonts[]          = { "DisposableDroidBB:size=12" };
@@ -44,7 +44,8 @@ static const Rule rules[] = {
 	{ "Spotify",  NULL,	  NULL,       1 << 2,	    0,		 -1 },
 	{ "Telegram", NULL,	  "Telegram", 1 << 3,	    0,		 -1 },
 	{ "Dunst",    NULL,	  NULL,	      0, 	    1,		 -1 },
-	{ "code-oss", NULL,	  	NULL,	  1 << 1,	0,		 -1 }
+	{ "code-oss", NULL,	  	NULL,	  1 << 1,	0,		 -1 },
+    { "jetbrains-clion", NULL, NULL,  1 << 1,   0,       -1 }
 };
 
 /* layout(s) */
