@@ -1,6 +1,8 @@
-dwm - dynamic window manager
+dwm - dynamic window manager [GlitchedCode's build]
 ============================
 dwm is an extremely fast, small, and dynamic window manager for X.
+This repository contains code to build dwm, a modified version of barM,
+(check out suckless's site), and dmenu.
 
 
 Requirements
@@ -10,13 +12,18 @@ In order to build dwm you need the Xlib header files.
 
 Installation
 ------------
+Clone the repository using this command:
+    
+    git clone --recurse-submodules git@github.com:GlitchedCode/dwm-glitch.git
+
+
 Edit config.mk to match your local setup (dwm is installed into
 the /usr/local namespace by default).
 
 Afterwards enter the following command to build and install dwm (if
 necessary as root):
 
-    make clean install
+    ./build_all.sh
 
 
 Running dwm
