@@ -15,6 +15,7 @@
  *  mv barM /usr/local/bin/
  */
 
+#define _GNU_SOURCE
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>

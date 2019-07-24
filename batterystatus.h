@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <errno.h>
+#include <unistd.h>
 
 char *
 smprintf(char *fmt, ...)
@@ -23,7 +24,7 @@ smprintf(char *fmt, ...)
 	return buf;
 }
 
-char *
+static const char *
 getbattery(){
     long lnum1, lnum2 = 0;
     char *status = malloc(sizeof(char)*12);
